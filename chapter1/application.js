@@ -9,7 +9,6 @@ function statement(invoice) {
     let result = `Statement for ${invoice.customer}\n`;
     const format = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format;
     for (let perf of invoice.performances) {
-        let thisAmount = amountFor(perf);
         // add volume credits
         volumeCredits += Math.max(perf.audience - 30, 0);
         // add extra credit for every ten comedy attendees
@@ -18,8 +17,8 @@ function statement(invoice) {
         }
 
         // print line for this order;
-        result += ` ${playFor(perf).name}:${format(thisAmount / 100)} (${perf.audience} seats)\n`;
-        totalAmount += thisAmount;
+        result += ` ${playFor(perf).name}:${format(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
+        totalAmount += amountFor(perf);
     }
 
     // print line for this order
