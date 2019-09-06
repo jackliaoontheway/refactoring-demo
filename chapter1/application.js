@@ -11,14 +11,17 @@ function statement(invoice) {
         totalAmount += amountFor(perf);
     }
 
-    let volumeCredits = 0;
-    for (let perf of invoice.performances) {
-        volumeCredits += volumeCreditsFor(perf);
-    }
-
     // print line for this order
     result += `Amount owed is ${usd(totalAmount / 100)}\n`
-    result += `You earned ${volumeCredits} credits\n`;
+    result += `You earned ${totalVolumeCredits()} credits\n`;
+    return result;
+}
+
+function totalVolumeCredits() {
+    let result = 0;
+    for (let perf of invoice.performances) {
+        result += volumeCreditsFor(perf);
+    }
     return result;
 }
 
