@@ -27,7 +27,6 @@ function gatherCustomerData(out, aCustomer) {
     out.push(["location", aCustomer.location]);
 }
 // Refactoring ======== >>
-
 function reportLines(aCustomer) {
     const lines = [];
     lines.push(["name", aCustomer.name]);
